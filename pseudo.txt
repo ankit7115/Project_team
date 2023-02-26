@@ -1,0 +1,8 @@
+BEGIN 
+NUMBER s1,s2,sum
+NUMBER A1,A2,S3,s4
+NUMBER A,B,C
+OUTPUT("enter number 1")
+OUTPUT("enter number 2")
+OUTPUT("HELLO")
+END
