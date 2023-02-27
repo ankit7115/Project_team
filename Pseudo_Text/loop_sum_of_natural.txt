@@ -1,0 +1,10 @@
+BEGIN
+ 
+NUMBER counter, sum=0
+ 
+FOR counter=1 TO 100 STEP 1 DO
+     sum=sum+counter
+ENDFOR
+OUTPUT sum
+ 
+END

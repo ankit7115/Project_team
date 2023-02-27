@@ -1,0 +1,8 @@
+BEGIN
+NUMBER len, area,perimeter
+INPUT len
+area = len*len
+perimeter = len*4
+OUTPUT area
+OUTPUT perimeter
+END

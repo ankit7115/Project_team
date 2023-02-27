@@ -1,0 +1,16 @@
+BEGIN
+ 
+NUMBER num
+ 
+OUTPUT "Enter a Number"
+OKU num
+ 
+IF num>0  THEN
+     OUTPUT "Entered number is positive"
+ELSE IF num <0 THEN
+     OUTPUT "Entered number is negative"
+ELSE
+     OUTPUT "Entered number is zero"
+ENDIF
+ 
+END

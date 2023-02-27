@@ -1,0 +1,9 @@
+BEGIN
+NUMBER s1, s2, sum
+OUTPUT("Input number1:")
+INPUT s1
+OUTPUT("Input number2:") 
+INPUT s2
+sum=s1+s2
+OUTPUT sum
+END

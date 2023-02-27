@@ -1,0 +1,13 @@
+BEGIN
+ 
+NUMBER counter, sum=0, num
+ 
+FOR counter=1 TO 50 STEP counter DO
+     OUTPUT "Enter a Number"
+     INPUT num
+     sum=sum+num
+ENDFOR
+ 
+OUTPUT sum
+ 
+END

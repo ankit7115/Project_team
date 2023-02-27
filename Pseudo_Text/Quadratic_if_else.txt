@@ -1,0 +1,17 @@
+BEGIN
+NUMBER a, b, c, d, x1, x2
+INPUT a,b,c
+d = b^2-4ac
+IF (d >= 0) THEN
+      x1 = (-b+√d)/2a yada x1 = (-b+d^(1/2)/2a
+      x2 = (-b-√d)/2a yada x2 = (-b-d^(1/2)/2a
+      OUTPUT "ROOT 1:"+x1
+      OUTPUT "ROOT 2:"+x2
+ ELSE IF (d == 0) THEN 
+      x1=x2= -b/2a
+      OUTPUT "ROOT 1:"+x1
+      OUTPUT "ROOT 2:"+x2
+ELSE
+    OUTPUT "There is no real root"
+ENDIF 
+END

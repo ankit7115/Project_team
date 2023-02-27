@@ -1,0 +1,10 @@
+BEGIN
+NUMBER b1,b2,area,perimeter
+INPUT b1
+UNPUT b2
+area=b1*b2
+perimeter=2*(b1+b2)
+OUTPUT area
+OUTPUT perimeter
+END
+ 

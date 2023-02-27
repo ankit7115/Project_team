@@ -1,0 +1,8 @@
+ 
+BEGIN
+NUMBER r, perimeter 
+INPUT r 
+perimeter=2*3.14*r
+OUTPUT perimeter
+END
+ 
