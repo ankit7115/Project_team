@@ -1,8 +1,65 @@
 #include<bits/stdc++.h>
-#include<vector>
+#include <algorithm>
+#define BEGIN string("#include<bits/stdc++.h>\nusing namespace std;\n\nint main(){")
+#define END string("\n\treturn 0;\n}")
+
 using namespace std;
-void print_to_cpp(string s){
-    cout<<s;
+
+string translate_line(const string& line) {
+    string translated = line;
+    bool flag=true;
+    size_t pos = translated.find("BEGIN");
+    if (pos != string::npos) {
+        translated.replace(pos, 5, BEGIN);
+    }
+
+    pos = translated.find("END");
+    if (pos != string::npos) {
+        translated.replace(pos, 3, END);
+    }
+
+    pos = translated.find("INPUT");
+    if (pos != string::npos) {
+        translated.replace(pos, 5, "cin >> ");
+        flag=false;
+    }
+
+    pos = translated.find("NUMBER");
+    if (pos != string::npos) {
+        translated.replace(pos, 6, "int");
+        flag=false;
+    }
+
+    pos = translated.find("OUTPUT (");
+    if (pos != string::npos) {
+        translated.replace(pos, 8, "cout << ");
+        pos=translated.find(")");
+        if (pos != string::npos) {
+            translated.erase(pos);
+        }
+        flag=false;
+    }
+
+    pos = translated.find("OUTPUT(");
+    if (pos != string::npos) {
+        translated.replace(pos, 7, "cout << ");
+        pos=translated.find(")");
+        if (pos != string::npos) {
+            translated.erase(pos);
+        }
+        flag=false;
+    }
+
+    pos = translated.find("OUTPUT ");
+    if (pos != string::npos) {
+        translated.replace(pos, 7, "cout << ");
+        flag=false;
+    }
+
+    if(flag)
+    return translated;
+    else
+    return translated + ";";
 }
 
 int main(){
@@ -11,17 +68,13 @@ int main(){
     
    vector<vector<string>> pseudoCode;
 
-    
+    //BEGIN;
     while (true) {
         vector<string> block;
         string line;
         while (getline(cin, line)) {
-            if (line == "END") {
-                break;
-            }
             block.push_back(line);
         }
-
         if (block.empty()) {
             break;
         }
@@ -30,13 +83,15 @@ int main(){
     }
     for (int i = 0; i < pseudoCode.size(); i++) {
         for (int j = 0; j < pseudoCode[i].size(); j++) {
-            cout << "    " << pseudoCode[i][j] << endl;
-        }
+            if(j==0)
+            cout << translate_line(pseudoCode[i][j]) << endl;
+            else
+            cout <<"\t"<< translate_line(pseudoCode[i][j]) << endl;
+        }  
     }
-    cout<<pseudoCode[0][1];
-
+    
     return 0;
 }
-    
+
 
    
