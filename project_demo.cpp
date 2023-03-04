@@ -1,8 +1,12 @@
-#include<bits/stdc++.h>
+#include<iostream>
+#include<string>
+#include<vector>
+
 using namespace std;
+
 int main(){
     freopen("pseudo.txt","r",stdin);
-   freopen("output1.txt","w",stdout);
+    freopen("ank_OutputCpp.cpp","w",stdout);
   
     vector<string>v;
     
