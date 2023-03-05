@@ -16,6 +16,12 @@ string translate_line(const string& line) {
         translated.replace(pos, 5, BEGIN);
         flag=true;
     }
+    
+    pos = translated.find("ENDFOR");
+    if (pos != string::npos) {
+        translated.replace(pos, 6, "\t}");
+        flag=true;
+    }
 
     pos = translated.find("ENDIF");
     if (pos != string::npos) {
@@ -46,6 +52,11 @@ string translate_line(const string& line) {
         if (pos != string::npos) {
             translated.erase(pos);
         }
+        //To print the variable through + operator
+        pos = translated.find("\" + ");
+        if (pos != string::npos) {
+        translated.replace(pos, 4, " << ");
+    }
     }
 
     pos = translated.find("OUTPUT(");
@@ -55,11 +66,22 @@ string translate_line(const string& line) {
         if (pos != string::npos) {
             translated.erase(pos);
         }
+        //To print the variable through + operator
+        pos = translated.find("\" + ");
+        if (pos != string::npos) {
+        translated.replace(pos, 4, " << ");
+    }
     }
 
     pos = translated.find("OUTPUT ");
     if (pos != string::npos) {
         translated.replace(pos, 7, "cout << ");
+        //To print the variable through + operator
+        pos = translated.find("\" + ");
+        
+        if (pos != string::npos) {
+        translated.replace(pos, 4, " << ");
+    }
     }
 
     pos = translated.find("ELSE IF ");
@@ -83,9 +105,16 @@ string translate_line(const string& line) {
         translated.replace(pos, 4, "}\n\telse {");
         flag=true;
     }
+
     pos = translated.find("AND");
     if (pos != string::npos) {
         translated.replace(pos, 3, "&&");
+        flag=true;
+    }
+
+    pos = translated.find("FOR");
+    if (pos != string::npos) {
+        translated.replace(pos, 3, "for ( ");
         flag=true;
     }
 
@@ -95,11 +124,13 @@ string translate_line(const string& line) {
         flag=true;
     }
 
-    // pos = translated.find("FOR");
-    // if (pos != string::npos) {
-    //     translated.replace(pos, 3, "for ( ");
-    //     flag=true;
-    // }
+    pos = translated.find("DO");
+    if (pos != string::npos) {
+        translated.replace(pos, 2, " ){");
+        flag=true;
+    }
+
+    
 
     if(flag)
     return translated;
@@ -111,30 +142,23 @@ int main(){
     freopen("pseudo.txt","r",stdin);
     freopen("output1.txt","w",stdout);
     
-   vector<vector<string>> pseudoCode;
-    while (true) {
-        vector<string> block;
+    vector<string> pseudoCode;
+
         string line;
         while (getline(cin, line)) {
-            block.push_back(line);
-        }
-        if (block.empty()) {
-            break;
+            pseudoCode.push_back(line);
         }
 
-        pseudoCode.push_back(block);
-    }
-    for (int i = 0; i < pseudoCode.size(); i++) {
-        for (int j = 0; j < pseudoCode[i].size(); j++) {
-            if(j==0)
-            cout << translate_line(pseudoCode[i][j]) << endl;
+        for (int i = 0; i < pseudoCode.size(); i++) {
+            if(i==0)
+                cout << translate_line(pseudoCode[i]) << endl;
             else
-            cout <<"\t"<< translate_line(pseudoCode[i][j]) << endl;
-        }  
-    }
-    
-    return 0;
+                cout <<"\t"<< translate_line(pseudoCode[i]) << endl;
+        }
+
+        return 0;
 }
+
 
 
    
